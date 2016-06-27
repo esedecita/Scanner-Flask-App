@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <title>Scanner App</title>
+    <head>
+        <link rel="stylesheet" href="/static/css/index.css">
+        <meta charset="utf-8">
+        <meta http-equiv="cache-control" content="no-cache">
+    </head>
+    <body>
+        <div class="center-on-page">
+            <h1>Select Scanner</h1>
+            <form action="/setscanner" method="post" id="selectForm">
+            </form>
+            <div class="select">
+                <select name="select_panel" id="select_panel" onchange="submitQuery()" form="selectForm">
+                    <option disabled selected>Choose an option</option>
+                </select>
+            </div>
+        </div>
+    </body>
+    <script>
+        var list_of_scanners = {{list_of_scanners|safe}};
+    </script>
+    <script src="/static/js/index.js"></script>
+</html>

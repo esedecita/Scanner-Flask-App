@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HomePage</title>
+        <link rel="stylesheet" href="/static/css/mainpage.css">
+        <meta charset="utf-8">
+        <meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="cache-control" content="no-store" />
+    </head>
+    <body onload="setDefaults(event)">
+        <div id="frame">
+            <div id='table'>
+                <div id='row1' class="table_rows">
+                    <div id='cell_1' class='cell_row1'>
+                        <p id="scanner_name"></p>
+                    </div>
+                    <div id='cell_2' class='cell_row1' onclick='startscan()'>
+                        <b>Start Scan</b>
+                    </div>
+                </div>
+                <div id='row2' class='table_rows'>
+                    <div id="cell_2_1" class="cell_row2">
+						<div id="button_frame">
+							<form action="/rotate" method="post" id="rotateValue"></form>
+							<button class="toggles" onclick="rotateImage(event)" id="left">Rotate Left</button>
+							<button class="toggles" onclick="rotateImage(event)" id="right">Rotate Right</button>
+						</div>
+						<div id="image_frame">
+						</div>
+					</div>
+                    <div id="cell_2_2" class="cell_row2">
+						<div id="textBox">
+						<h2>Image List</h2>
+						</div>
+						<form action="/rename" method="post" id="sendFileName"></form>
+						<div id="list_view">
+                        <ul id="list_of_files" style="list-style:none"></ul>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        var scanner_name = {{scanner_name|safe}};
+        var file_list = {{file_list|safe}};     
+		var file_name_array = {{file_name_array|safe}};
+    </script>
+    <script src="/static/js/mainpage.js"></script>
+</html>
