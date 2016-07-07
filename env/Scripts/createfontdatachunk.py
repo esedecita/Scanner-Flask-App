@@ -1,4 +1,4 @@
-#!c:\users\gpatil\desktop\scanne~1\env\scripts\python.exe
+#!c:\users\gpatil\desktop\scannerapp\env\scripts\python.exe
 from __future__ import print_function
 import base64
 import os

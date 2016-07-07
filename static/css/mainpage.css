@@ -1,11 +1,11 @@
 body {
+	width: 70%;
+	margin: auto;
 	background: #FFAB00;
 }
 
 #frame {
-	height: 100%;
-	width: 32cm;
-	border: 1px solid black;
+	width: 21cm;
 }
 
 #table {
@@ -13,12 +13,13 @@ body {
 }
 
 .table_rows {
+	height: 0.5in;
 	display: table-row;
 }
 
 .cell_row1 {
 	display: table-cell;
-	height: 0.8in;
+	height: 100%;
 	width: calc(32cm / 2);
 	border: 1px solid black;
 }
@@ -32,7 +33,7 @@ body {
 
 .cell_row2 {
 	display: table-cell;
-	height: 8in;
+	height: 19cm;
 	border: 1px solid black;
 	width: calc(32cm / 2);
 }
@@ -62,14 +63,14 @@ body {
 }
 
 .toggles {
-	width: 49.6%;
+	width: 49.5%;
 	height: 100%;
-	background-color:bisque;
+	background-color: bisque;
 }
 
 
 #image_frame {
-	margin-left: 50px;
+	margin-left: 0px;
 }
 
 #textBox {
@@ -83,3 +84,22 @@ body {
 	position: relative;
 }
 
+#mergeToggle {
+	width: 100%;
+	height: 100%;
+	background-color: bisque;
+}
+
+#startScanButton {
+	height: 100%;
+	width: 100%;
+	background-color: bisque;
+}
+
+#cell_2_1 {
+	width: 12cm;
+}
+
+#cell_1 {
+	width: 12cm;
+}

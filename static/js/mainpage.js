@@ -1,14 +1,23 @@
 var currentValue = '';
+var file_merge_list = [];
+
 
 function setDefaults(event) {
-	'use strict';
-	var image_frame = document.getElementById('image_frame');
+    'use strict';
+    var image_frame = document.getElementById('image_frame');
     var displayImg = document.createElement('img');
-    currentValue = file_name_array[0];
-    displayImg.setAttribute("src", "/static/images/" + currentValue + ".png");
-    displayImg.setAttribute("width", "480px");
-    displayImg.setAttribute("height", "640px");
-    image_frame.appendChild(displayImg);
+    if (file_name_array[0] != null) {
+        currentValue = file_name_array[0];
+        displayImg.setAttribute("src", "/static/images/" + currentValue + ".png");
+        displayImg.setAttribute("width", "480px");
+        displayImg.setAttribute("height", "640px");
+        image_frame.appendChild(displayImg);
+    } else {
+        displayImg.setAttribute("src", "https://s3.amazonaws.com/PandaExpressWebsite/Responsive/img/fundraiser-flyer/flyer-watermark.png");
+        displayImg.setAttribute("width", "480px");
+        displayImg.setAttribute("height", "640px");
+        image_frame.appendChild(displayImg);
+    }
 }
 
 
@@ -16,7 +25,7 @@ var scanner_field = document.getElementById('scanner_name');
 scanner_field.innerHTML = "<b>Current device:</b> " + scanner_name[0];
 
 function startscan() {
-	'use strict';
+    'use strict';
     location.href = '/scan';
 }
 
@@ -32,12 +41,44 @@ for (var i = 0; i < file_list.length; i++) {
     input.setAttribute("class", "boxes");
     input.setAttribute("onchange", "rename(event)");
     input.setAttribute("onfocus", "getCurrentValue(event, document.getElementById(event.target.id).value)");
+	input.setAttribute("ondblclick", "mergeDocuments(event, document.getElementById(event.target.id).value)")
     input.setAttribute("size", "25");
     li.appendChild(input);
     list_of_files.appendChild(li);
     list_of_files.appendChild(breakLine);
 }
 
+function mergeDocuments(event, elem) {
+	var flag = 0;
+	function contains(element) {
+		for (var c = 0; c < file_merge_list.length; c++ ) {
+			if (element === file_merge_list[c]) {
+				flag = 1;
+			}
+		}
+		if (flag === 1) {
+			return "found"
+		}
+		else {
+			return "not found"
+		}
+	}
+	
+	if (contains(elem) === "not found") {
+		var input_box = document.getElementById(elem);
+		input_box.style.backgroundColor = "green";
+		file_merge_list.push(elem);
+	}
+	
+	else if (contains(elem) === "found") {
+		var indexof = file_merge_list.indexOf(elem)
+		if (indexof > -1) {
+			file_merge_list.splice(indexof, 1);
+		}
+		var input_box = document.getElementById(elem);
+		input_box.style.backgroundColor = "transparent";
+	}
+}
 
 var image_frame = document.getElementById('image_frame');
 
@@ -111,9 +152,22 @@ function rotateImage(event) {
     fileName.setAttribute("id", "fileName");
     fileName.setAttribute("form", "rotateValue");
     fileName.setAttribute("value", currentValue);
-
     button_frame.appendChild(fileName);
-
-    rotateValue.submit()
-
+    rotateValue.submit();
 }
+
+function mergeFiles(event) {
+	var container =  document.getElementById("textBox");
+	var hiddenInput = document.createElement("input");
+	hiddenInput.setAttribute("type","hidden");
+	hiddenInput.setAttribute("name","mergeFileList");
+	hiddenInput.setAttribute("id","mergeFileList");
+	hiddenInput.setAttribute("value", file_merge_list.toString());
+	hiddenInput.setAttribute("form","mergeFiles");
+	container.appendChild(hiddenInput);
+	var form = document.getElementById("mergeFiles");
+	form.submit();
+}
+
+
+

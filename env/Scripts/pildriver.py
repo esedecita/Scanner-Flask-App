@@ -1,4 +1,4 @@
-#!c:\users\gpatil\desktop\scanne~1\env\scripts\python.exe
+#!c:\users\gpatil\desktop\scannerapp\env\scripts\python.exe
 """PILdriver, an image-processing calculator using PIL.
 
 An instance of class PILDriver is essentially a software stack machine

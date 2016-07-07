@@ -14,9 +14,9 @@
                     <div id='cell_1' class='cell_row1'>
                         <p id="scanner_name"></p>
                     </div>
-                    <div id='cell_2' class='cell_row1' onclick='startscan()'>
-                        <b>Start Scan</b>
-                    </div>
+					<div id='cell_2' class='cell_row1'> 
+						<button id="startScanButton" onclick="startscan()">Start Scan</button>
+					</div>	
                 </div>
                 <div id='row2' class='table_rows'>
                     <div id="cell_2_1" class="cell_row2">
@@ -30,7 +30,8 @@
 					</div>
                     <div id="cell_2_2" class="cell_row2">
 						<div id="textBox">
-						<h2>Image List</h2>
+						<form action="/merge"  method="post" id="mergeFiles"></form>
+						<button id="mergeToggle" onclick="mergeFiles(event)">Merge</button>
 						</div>
 						<form action="/rename" method="post" id="sendFileName"></form>
 						<div id="list_view">

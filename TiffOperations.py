@@ -44,32 +44,17 @@ class TIFFManipulation(object):
 
                 shutil.rmtree(source, onerror=on_rm_error)
         else:
-            print "The third argument is either the string 'yes or 'no'"
-
+            print "The third argument is either the string 'yes' or 'no'"
 
     @staticmethod
-    def merge_tiffs(file_name_list, path_of_the_files):
-        """
-        Merges multiple tiffs into a single image file similar to that of a multi page PDF document
-        :param file_name_list: The files names in the directory are pass in the form of a list of strings
-        :param path_of_the_files: The folder containing the files is the second param
-        :return: This method does not return anything
-        """
-        if not isinstance(file_name_list, list):
-            print "Invalid value"
-        else:
-            os.chdir(path_of_the_files)
-            file_string = ''
-            _file_string = ''
-            for file_name in file_name_list:
-                file_string += file_name + ','
-                _file_string += file_name + '_'
-            file_string = file_string[:-1]
-            print file_string
-            _file_string = _file_string[:-1]
-            print _file_string
-            subprocess.Popen("i_view32 /multitif=(merged_" + _file_string +".tiff," + file_string + ")", shell=True,
-                             stdout=subprocess.PIPE, env={'PATH': os.getenv('PATH')}).stdout.read()
+    def merge_tiff_files(list_of_files, path, destination):
+        os.chdir(path)
+        #list of files to CSV
+        csv_file_names = ",".join(list_of_files)
+        merged_tiff_filename = "Merge" + str(datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')) + ".tif"
+        newMergedFile = os.path.join(destination, merged_tiff_filename)
+        subprocess.Popen("i_view32 /multitif=" + "(" + newMergedFile + "," + csv_file_names + ")", shell=True,
+                         stdout=subprocess.PIPE,  env={'PATH': os.getenv('PATH')}).stdout.read()
 
     @staticmethod
     def compress_to_tiffs(source, remove_old_files):

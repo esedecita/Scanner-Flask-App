@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=C:\Users\gpatil\Desktop\SCANNE~1\env"
+set "VIRTUAL_ENV=C:\Users\gpatil\Desktop\ScannerApp\env"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
